@@ -122,7 +122,7 @@ public:
   T optionValue(const std::string name) const;
   const std::vector<std::string> &getArgs(void) const;
   // parse
-  bool parse(int argc, char *argv[]);
+  bool parse(const int argc, const char *argv[]);
   // print option list
   friend std::ostream &operator<<(std::ostream &out, const OptParser &parser);
 
@@ -231,7 +231,7 @@ T OptParser::optionValue(const std::string name) const
 const std::vector<std::string> &OptParser::getArgs(void) const { return arg_; }
 
 // parse ///////////////////////////////////////////////////////////////////////
-bool OptParser::parse(int argc, char *argv[])
+bool OptParser::parse(const int argc, const char *argv[])
 {
   std::smatch sm;
   std::queue<std::string> arg;
