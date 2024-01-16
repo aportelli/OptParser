@@ -1,7 +1,7 @@
 /*
  * OptParser.hpp, part of OptParser
  *
- * Copyright (C) 2022 Antonin Portelli
+ * Copyright (C) 2022-2023 Antonin Portelli
  *
  * OptParser is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -114,9 +114,9 @@ public:
   // destructor
   virtual ~OptParser(void) = default;
   // access
-  void addOption(const std::string shortName, const std::string longName, const OptType type,
-                 const bool optional = false, const std::string helpMessage = "",
-                 const std::string defaultVal = "");
+  void addOption(const std::string shortName, const std::string longName,
+                 const OptType type, const bool optional = false,
+                 const std::string helpMessage = "", const std::string defaultVal = "");
   bool gotOption(const std::string name) const;
   template <typename T = std::string>
   T optionValue(const std::string name) const;
@@ -149,8 +149,8 @@ const std::regex OptParser::optRegex_(optRegex);
 
 // access //////////////////////////////////////////////////////////////////////
 void OptParser::addOption(const std::string shortName, const std::string longName,
-                          const OptType type, const bool optional, const std::string helpMessage,
-                          const std::string defaultVal)
+                          const OptType type, const bool optional,
+                          const std::string helpMessage, const std::string defaultVal)
 {
   OptPar par;
 
@@ -160,16 +160,17 @@ void OptParser::addOption(const std::string shortName, const std::string longNam
   par.helpMessage = helpMessage;
   par.type = type;
   par.optional = optional;
-  auto it = std::find_if(opt_.begin(), opt_.end(),
-                         [&par](const OptPar &p)
-                         {
-                           bool match = false;
+  auto it =
+      std::find_if(opt_.begin(), opt_.end(),
+                   [&par](const OptPar &p)
+                   {
+                     bool match = false;
 
-                           match |= (par.shortName == p.shortName) and !par.shortName.empty();
-                           match |= (par.longName == p.longName) and !par.longName.empty();
+                     match |= (par.shortName == p.shortName) and !par.shortName.empty();
+                     match |= (par.longName == p.longName) and !par.longName.empty();
 
-                           return match;
-                         });
+                     return match;
+                   });
   if (it != opt_.end())
   {
     std::string opt;
@@ -269,8 +270,9 @@ bool OptParser::parse(const int argc, const char *argv[])
         std::string optName = sm[2].str();
 
         // find option
-        auto it = find_if(opt_.begin(), opt_.end(),
-                          [&optName](const OptPar &p) { return (p.shortName == optName); });
+        auto it =
+            find_if(opt_.begin(), opt_.end(),
+                    [&optName](const OptPar &p) { return (p.shortName == optName); });
 
         // parse if found
         if (it != opt_.end())
@@ -303,8 +305,9 @@ bool OptParser::parse(const int argc, const char *argv[])
         std::string optName = sm[5].str();
 
         // find option
-        auto it = find_if(opt_.begin(), opt_.end(),
-                          [&optName](const OptPar &p) { return (p.longName == optName); });
+        auto it =
+            find_if(opt_.begin(), opt_.end(),
+                    [&optName](const OptPar &p) { return (p.longName == optName); });
 
         // parse if found
         if (it != opt_.end())
@@ -366,9 +369,9 @@ bool OptParser::parse(const int argc, const char *argv[])
 // find option index ///////////////////////////////////////////////////////////
 int OptParser::optIndex(const std::string name) const
 {
-  auto it =
-      find_if(opt_.begin(), opt_.end(),
-              [&name](const OptPar &p) { return (p.shortName == name) or (p.longName == name); });
+  auto it = find_if(opt_.begin(), opt_.end(),
+                    [&name](const OptPar &p)
+                    { return (p.shortName == name) or (p.longName == name); });
 
   if (it != opt_.end())
   {
