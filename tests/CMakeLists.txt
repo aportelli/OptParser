@@ -1,4 +1,4 @@
 add_executable(print-opt print-opt.cpp)
-target_include_directories(print-opt PRIVATE "${PROJECT_SOURCE_DIR}")
+target_link_libraries(print-opt OptParser)
 
 add_test(NAME print-opt COMMAND print-opt)
