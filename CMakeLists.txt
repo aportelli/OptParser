@@ -10,7 +10,7 @@ option(OPTPARSER_TEST "Compile unit tests" Off)
 add_library(${PROJECT_NAME} INTERFACE OptParser/OptParser.hpp)
 target_include_directories(
   ${PROJECT_NAME}
-  INTERFACE $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/OptParser>
+  INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/OptParser>
             $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/OptParser>)
 target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_11)
 
