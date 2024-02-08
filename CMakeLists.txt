@@ -11,7 +11,7 @@ add_library(${PROJECT_NAME} INTERFACE OptParser/OptParser.hpp)
 target_include_directories(
   ${PROJECT_NAME}
   INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/OptParser>
-            $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/OptParser>)
+            $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_11)
 
 if(OPTPARSER_TEST)
@@ -39,5 +39,5 @@ install(
 install(FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
               "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/OptParser
+install(FILES ${PROJECT_SOURCE_DIR}/OptParser/OptParser.hpp
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
