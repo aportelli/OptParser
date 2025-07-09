@@ -270,9 +270,8 @@ bool OptParser::parse(const int argc, const char *argv[])
         std::string optName = sm[2].str();
 
         // find option
-        auto it =
-            find_if(opt_.begin(), opt_.end(),
-                    [&optName](const OptPar &p) { return (p.shortName == optName); });
+        auto it = find_if(opt_.begin(), opt_.end(), [&optName](const OptPar &p)
+                          { return (p.shortName == optName); });
 
         // parse if found
         if (it != opt_.end())
@@ -305,9 +304,8 @@ bool OptParser::parse(const int argc, const char *argv[])
         std::string optName = sm[5].str();
 
         // find option
-        auto it =
-            find_if(opt_.begin(), opt_.end(),
-                    [&optName](const OptPar &p) { return (p.longName == optName); });
+        auto it = find_if(opt_.begin(), opt_.end(), [&optName](const OptPar &p)
+                          { return (p.longName == optName); });
 
         // parse if found
         if (it != opt_.end())
@@ -369,8 +367,7 @@ bool OptParser::parse(const int argc, const char *argv[])
 // find option index ///////////////////////////////////////////////////////////
 int OptParser::optIndex(const std::string name) const
 {
-  auto it = find_if(opt_.begin(), opt_.end(),
-                    [&name](const OptPar &p)
+  auto it = find_if(opt_.begin(), opt_.end(), [&name](const OptPar &p)
                     { return (p.shortName == name) or (p.longName == name); });
 
   if (it != opt_.end())
