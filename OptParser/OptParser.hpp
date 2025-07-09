@@ -143,7 +143,7 @@ private:
  *                         OptParser implementation                           *
  ******************************************************************************/
 // regular expression //////////////////////////////////////////////////////////
-constexpr char optRegex[] = "(-([a-zA-Z])(.+)?)|(--([a-zA-Z_-]+)=?(.+)?)";
+constexpr char optRegex[] = "(-([a-zA-Z0-9])(.+)?)|(--([a-zA-Z0-9_-]+)=?(.+)?)";
 
 const std::regex OptParser::optRegex_(optRegex);
 
